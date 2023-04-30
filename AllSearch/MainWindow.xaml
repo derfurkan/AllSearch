@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="AllSearch.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AllSearch"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d">
+
+    <StackPanel>
+
+        <TextBlock Margin="20,20" FontSize="24">AllSearch</TextBlock>
+
+        <TextBlock Margin="20,-25" Foreground="LightGray">
+            <Hyperlink NavigateUri="https://github.com/derfurkan">Created by Furkan</Hyperlink>
+        </TextBlock>
+        <RelativePanel Margin="20,10">
+
+            <TextBlock Margin="150,4">Select a path</TextBlock>
+            <ComboBox Margin="150,25" x:Name="driveSelectionBox" SelectionChanged="driveSelectionBox_SelectionChanged" SelectedIndex="0" />
+
+            <TextBlock Margin="0,4">Search Mode</TextBlock>
+            <ComboBox Margin="0,25" x:Name="searchModeCombo" SelectedIndex="0" >
+                <ComboBoxItem>String</ComboBoxItem>
+                <ComboBoxItem>Regex</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Margin="0,75">Look For</TextBlock>
+            <CheckBox Unchecked="searchLocationFiles_Unchecked" Checked="searchLocationFiles_Checked" Margin="0,90" x:Name="searchLocationFiles">Files</CheckBox>
+            <CheckBox Unchecked="searchLocationFolders_Unchecked" Checked="searchLocationFolders_Checked" Margin="0,115" x:Name="searchLocationFolders">Folders</CheckBox>
+
+            <TextBlock Margin="150,75">Search In</TextBlock>
+            <CheckBox Margin="150,90" x:Name="searchInName">Name</CheckBox>
+            <CheckBox Margin="150,115" x:Name="searchInConent">Content</CheckBox>
+
+            <TextBlock Margin="0,160">Search For</TextBlock>
+            <RichEditBox x:Name="searchValue"
+                         AutomationProperties.Name="editor with custom menu"
+                         Width="800" Height="50" Margin="0,180"/>
+
+            <CheckBox Unchecked="multithreadingBox_Unchecked" Checked="multithreadingBox_Checked" IsChecked="false" x:Name="multithreadingBox" Margin="0,235">Multithreading</CheckBox>
+            <CheckBox Checked="boostBox_Checked" x:Name="boostBox" IsChecked="false" IsEnabled="false" Margin="0,261">Thread Boosting</CheckBox>
+            <Button Click="searchButton_Click" x:Name="searchButton" Margin="0,335" HorizontalAlignment="Right" Content="Start Search"/>
+            <Button Click="resultsButton_Click" IsEnabled="false" x:Name="resultsButton" Margin="0,297" HorizontalAlignment="Right" Content="View Results: 0"/>
+            <TextBlock x:Name="statusLabel" Margin="140,342" Width="800"></TextBlock>
+            <ProgressRing x:Name="processRing" IsActive="False" Margin="103,336" Height="30" Width="30" ></ProgressRing>
+        </RelativePanel>
+
+    </StackPanel>
+</Window>
